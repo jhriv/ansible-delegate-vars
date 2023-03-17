@@ -1,0 +1,22 @@
+---
+
+- name: Display foo
+  debug:
+    var: foo
+
+- name: Display hostvars["sample"].foo
+  debug:
+    var: hostvars["sample"].foo
+
+- name: Verify the host variables are being read
+  assert:
+    that: foo == hostvars["sample"].foo
+  ignore_errors: true
+
+- name: "Show 'em"
+  lineinfile:
+    create: true
+    line: 'foo is "{{ foo }}"'
+    path: /tmp/sample.txt
+  check_mode: true
+  diff: true

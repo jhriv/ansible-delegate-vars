@@ -1,0 +1,3 @@
+sample.yml fqcn[action-core]
+roles/show_vars/tasks/main.yml fqcn[action-core]
+roles/show_vars/tasks/main.yml ignore-errors

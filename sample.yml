@@ -1,0 +1,30 @@
+---
+
+- name: Sample playbook
+  hosts: localhost
+  gather_facts: false
+
+  pre_tasks:
+
+    - name: Display foo, by hostvars
+      debug:
+        var: hostvars["sample"].foo
+
+    - name: Add the sample host
+      add_host:
+        name: sample
+
+    - name: Display foo, by variable
+      debug:
+        var: foo
+      delegate_to: sample
+      connection: local
+
+    - name: Display foo, by hostvars
+      debug:
+        var: hostvars["sample"].foo
+
+  roles:
+    - role: show_vars
+      delegate_to: sample
+      connection: local

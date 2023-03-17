@@ -1,0 +1,20 @@
+---
+
+- name: Sample playbook
+  hosts: localhost
+  gather_facts: false
+
+  pre_tasks:
+
+    - name: Load the sample host_vars
+      include_vars:
+        file: host_vars/sample.yml
+
+    - name: Add the sample host
+      add_host:
+        name: sample
+
+  roles:
+    - role: show_vars
+      delegate_to: sample
+      connection: local
